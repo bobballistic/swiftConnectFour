@@ -75,6 +75,15 @@ class Game {
 
     }
     
+      func delay(delay:Double, closure:()->()) {
+            dispatch_after(
+                dispatch_time(
+                    DISPATCH_TIME_NOW,
+                    Int64(delay * Double(NSEC_PER_SEC))
+                ),
+                dispatch_get_main_queue(), closure)
+        }
+    
     func checkWinCondition (column: Int, row: Int){
         let alert = UIAlertView()
         alert.title = "Four In a Row! Game Over!"
@@ -85,26 +94,34 @@ class Game {
                 
                 //horizontal
                 if(isLinearMatch(column: column, row: row, stepX: 1, stepY: 0)){
+                     delay(2) {
                     isFinished = true
                     alert.show()
+                    }
                 }
                 
                 //vertical
                 if(isLinearMatch(column: column, row: row, stepX: 0, stepY: 1)){
+                    delay(2) {
                     isFinished = true
                     alert.show()
+                    }
                 }
                 
                 //diagonal
                 if(isLinearMatch(column: column, row: row, stepX: 1, stepY: 1)){
+                     delay(2) {
                     isFinished = true
                     alert.show()
+                    }
                 }
                 
                 //second diagonal
                 if(isLinearMatch(column: column, row: row, stepX: 1, stepY: -1)){
+                     delay(2) {
                     isFinished = true
                     alert.show()
+                    }
                 }
             }
         
